@@ -68,10 +68,12 @@ class PassiveAggressiveClassifier(BaseSGDClassifier):
         hinge: equivalent to PA-I in the reference paper.
         squared_hinge: equivalent to PA-II in the reference paper.
 
-    n_jobs : integer, optional
+    n_jobs : int or None, optional (default=None)
         The number of CPUs to use to do the OVA (One Versus All, for
-        multi-class problems) computation. -1 means 'all CPUs'. Defaults
-        to 1.
+        multi-class problems) computation.
+        ``None`` means 1 unless in a :obj:`joblib.parallel_backend` context.
+        ``-1`` means using all processors. See :term:`Glossary <n_jobs>`
+        for more details.
 
     random_state : int, RandomState instance or None, optional, default=None
         The seed of the pseudo random number generator to use when shuffling
@@ -135,7 +137,7 @@ class PassiveAggressiveClassifier(BaseSGDClassifier):
     --------
     >>> from sklearn.linear_model import PassiveAggressiveClassifier
     >>> from sklearn.datasets import make_classification
-    >>>
+
     >>> X, y = make_classification(n_features=4, random_state=0)
     >>> clf = PassiveAggressiveClassifier(max_iter=1000, random_state=0)
     >>> clf.fit(X, y)
@@ -373,7 +375,7 @@ class PassiveAggressiveRegressor(BaseSGDRegressor):
     --------
     >>> from sklearn.linear_model import PassiveAggressiveRegressor
     >>> from sklearn.datasets import make_regression
-    >>>
+
     >>> X, y = make_regression(n_features=4, random_state=0)
     >>> regr = PassiveAggressiveRegressor(max_iter=100, random_state=0)
     >>> regr.fit(X, y)

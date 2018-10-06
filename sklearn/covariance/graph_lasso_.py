@@ -467,7 +467,9 @@ def graphical_lasso_path(X, alphas, cov_init=None, X_test=None, mode='cd',
 
 
 class GraphicalLassoCV(GraphicalLasso):
-    """Sparse inverse covariance w/ cross-validated choice of the l1 penalty
+    """Sparse inverse covariance w/ cross-validated choice of the l1 penalty.
+
+    See glossary entry for :term:`cross-validation estimator`.
 
     Read more in the :ref:`User Guide <sparse_inverse_covariance>`.
 
@@ -520,8 +522,11 @@ class GraphicalLassoCV(GraphicalLasso):
         than number of samples. Elsewhere prefer cd which is more numerically
         stable.
 
-    n_jobs : int, optional
-        number of jobs to run in parallel (default 1).
+    n_jobs : int or None, optional (default=None)
+        number of jobs to run in parallel.
+        ``None`` means 1 unless in a :obj:`joblib.parallel_backend` context.
+        ``-1`` means using all processors. See :term:`Glossary <n_jobs>`
+        for more details.
 
     verbose : boolean, optional
         If verbose is True, the objective function and duality gap are
@@ -872,7 +877,9 @@ class GraphLasso(GraphicalLasso):
 @deprecated("The 'GraphLassoCV' was renamed to 'GraphicalLassoCV' "
             "in version 0.20 and will be removed in 0.22.")
 class GraphLassoCV(GraphicalLassoCV):
-    """Sparse inverse covariance w/ cross-validated choice of the l1 penalty
+    """Sparse inverse covariance w/ cross-validated choice of the l1 penalty.
+
+    See glossary entry for :term:`cross-validation estimator`.
 
     This class implements the Graphical Lasso algorithm.
 
@@ -927,8 +934,11 @@ class GraphLassoCV(GraphicalLassoCV):
         than number of samples. Elsewhere prefer cd which is more numerically
         stable.
 
-    n_jobs : int, optional
-        number of jobs to run in parallel (default 1).
+    n_jobs : int or None, optional (default=None)
+        number of jobs to run in parallel.
+        ``None`` means 1 unless in a :obj:`joblib.parallel_backend` context.
+        ``-1`` means using all processors. See :term:`Glossary <n_jobs>`
+        for more details.
 
     verbose : boolean, optional
         If verbose is True, the objective function and duality gap are
