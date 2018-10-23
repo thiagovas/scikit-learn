@@ -692,7 +692,7 @@ cdef class Gini(ClassificationCriterion):
 
 
 cdef class Renyi(ClassificationCriterion):
-    r"""Cross Entropy impurity criterion.
+    r"""Renyi min-entropy criterion.
 
     This handles cases where the target is a classification taking values
     0, 1, ... K-2, K-1. If node m represents a region Rm with Nm observations,
@@ -702,14 +702,14 @@ cdef class Renyi(ClassificationCriterion):
 
     be the proportion of class k observations in node m.
 
-    The cross-entropy is then defined as
-
-        cross-entropy = -\sum_{k=0}^{K-1} count_k log(count_k)
+    Renyi's min entropy is then defined as:
+        
+        renyi = -log(max_{k=0}^{k-1} count_k)
     """
 
     cdef double node_impurity(self) nogil:
         """Evaluate the impurity of the current node, i.e. the impurity of
-        samples[start:end], using the cross-entropy criterion."""
+        samples[start:end], using renyi's min-entropy criterion."""
 
         cdef SIZE_t* n_classes = self.n_classes
         cdef double* sum_total = self.sum_total
